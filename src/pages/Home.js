@@ -12,6 +12,9 @@ function Home() {
         <Link to="/menu">
           <button> TIKLA VE ARAMIZA KATIL </button>
         </Link>
+        <Link to="/menu">
+          <button className="headerContainer">TOKENA GİT</button>
+        </Link>
       </div>
     </div>
   );
