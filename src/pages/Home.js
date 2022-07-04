@@ -10,10 +10,10 @@ function Home() {
         <h1> METAVERSE İLE ENGELSİZSİNİZ </h1>
         <p> ADİL VE ENGELSİZ</p>
         <Link to="/menu">
-          <button> TIKLA VE ARAMIZA KATIL </button>
+          <button className="headerContainer">ARAMIZA KATIL </button>
         </Link>
         <Link to="/token">
-          <button className="headerContainer">TOKENA GİT</button>
+          <button>TOKENA GİT</button>
         </Link>
       </div>
     </div>
