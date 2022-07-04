@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import mietoken from "../token/mietoken";
-import web3 from "../token/web3";
+import Web3 from "web3";
 import styles from "../styles/Token.css";
 import "antd/dist/antd.css";
 
@@ -12,6 +12,8 @@ class Token extends Component {
   };
 
   connectWallet = async () => {
+    window.ethereum.request({ method: "eth_requestAccounts" });
+    const web3 = new Web3(window.ethereum);
     const accounts = await web3.eth.getAccounts();
     this.setState({ connectWalletText: "Connecting..." });
     this.setState({ address: accounts[0] });
