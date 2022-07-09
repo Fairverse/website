@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import mietoken from "../token/mietoken";
-//import web3 from "../token/web3";
 import Web3 from "web3";
-import styles from "../styles/Token.css";
+import "../styles/TokenFunc.css";
 import "antd/dist/antd.css";
 
 function TokenFunc() {
@@ -34,14 +33,14 @@ class Token extends Component {
   render() {
     return (
       <div>
-        <div className={styles.btnWrapper}>
-          <button className={styles.button6} onClick={this.connectWallet}>
+        <div className="btnWrapper">
+          <button className="button6" onClick={this.connectWallet}>
             {this.state.connectWalletText}
           </button>
         </div>
 
         <div className="p">
-          <div className={styles.addressWrapper}>
+          <div className="addressWrapper">
             <h3>Address: {this.state.address}</h3>
             <h3>Balance: {this.state.addressBalance}</h3>
           </div>
