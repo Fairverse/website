@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import mietoken from "../token/mietoken";
+//import web3 from "../token/web3";
 import Web3 from "web3";
 import styles from "../styles/Token.css";
 import "antd/dist/antd.css";
+
+function TokenFunc() {
+  connectMetaMask();
+  return <Token />;
+}
+
+function connectMetaMask() {
+  window.ethereum.request({ method: "eth_requestAccounts" });
+}
 
 class Token extends Component {
   state = {
@@ -12,7 +22,6 @@ class Token extends Component {
   };
 
   connectWallet = async () => {
-    window.ethereum.request({ method: "eth_requestAccounts" });
     const web3 = new Web3(window.ethereum);
     const accounts = await web3.eth.getAccounts();
     this.setState({ connectWalletText: "Connecting..." });
@@ -31,15 +40,15 @@ class Token extends Component {
           </button>
         </div>
 
-        <p className={styles.addressWrapper}>
-          <div>
+        <div className="p">
+          <div className={styles.addressWrapper}>
             <h3>Address: {this.state.address}</h3>
             <h3>Balance: {this.state.addressBalance}</h3>
           </div>
-        </p>
+        </div>
       </div>
     );
   }
 }
 
-export default Token;
+export default TokenFunc;
