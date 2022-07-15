@@ -19,6 +19,7 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/token" exact component={TokenFunc} />
+          <Route path="/game" exact component={Game}/>
         </Switch>
         <Footer />
       </Router>

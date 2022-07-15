@@ -17,6 +17,7 @@ function Navbar() {
         <div className="hiddenLinks">
           <Link to="/"> Anasayfa </Link>
           <Link to="/menu"> Menu </Link>
+          <Link to="/game">Oyun</Link>
           <Link to="/about"> Hakkımızda </Link>
           <Link to="/contact"> İletişim </Link>
         </div>
@@ -24,6 +25,7 @@ function Navbar() {
       <div className="rightSide">
         <Link to="/"> Anasayfa </Link>
         <Link to="/menu"> Menu </Link>
+        <Link to="/game">Oyun</Link>
         <Link to="/about"> Hakkımızda </Link>
         <Link to="/contact"> İletişim </Link>
         <button onClick={toggleNavbar}>
