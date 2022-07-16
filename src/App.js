@@ -6,6 +6,7 @@ import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import TokenFunc from "./pages/Token";
+import Game from "./pages/Game";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
