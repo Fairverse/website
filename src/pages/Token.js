@@ -18,6 +18,8 @@ class Token extends Component {
     connectWalletText: "Connect Wallet",
     address: "",
     addressBalance: "",
+    message: "",
+    receiverAddress: "",
   };
 
   connectWallet = async () => {
@@ -29,6 +31,11 @@ class Token extends Component {
     this.setState({ connectWalletText: "Wallet Connected" });
     this.setState({ addressBalance: balance });
   };
+
+  transferToken = (value) => {
+    const message = "Value: " + value;
+    this.setState({message});
+  }
 
   render() {
     return (
@@ -45,6 +52,30 @@ class Token extends Component {
             <h3>Balance: {this.state.addressBalance}</h3>
           </div>
         </div>
+
+        <div className="interactionsCard">
+          <h2 className="header">MiE Token Transfer İşlemi</h2>
+          <div>
+            <h3 className="header">Alıcı Adres: </h3>
+            <input
+              type="text"
+              value={this.receiverAddress}
+              className="addressInput"
+              onChange={(event) =>
+                this.setState({ receiverAddress: event.target.value })
+              }
+              placeholder="MiE Token gönderilecek adresi girin"
+            />
+          </div>
+          <br />
+          <div className="btnWrapper">
+            <button className="button6" onClick={() => this.transferToken(100)}>
+              100
+            </button>
+          </div>
+          <hr />
+        </div>
+        <h1>{this.state.message}</h1>
       </div>
     );
   }
