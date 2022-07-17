@@ -68,7 +68,8 @@ export default function Contact() {
           
           />
           {errors.message && errors.message}
-					<button type="submit" >Gönder</button>
+					<button type="submit"  >Gönder</button>
+          
           
 				</form>
        
