@@ -1,34 +1,31 @@
-import React from "react";
-import Logo from "../assets/logo.png";
-import "../styles/Contact.css";
+import React from 'react';
+import emailjs from 'emailjs-com';
 
-function Contact() {
+import '../styles/Contact.css';
+
+export default function Contact() {
+
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_i4yz6tl', 'template_zgofptf', e.target, 's2xENye55tST9E5qD')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  }
+
   return (
-    <div className="contact">
-      <div
-        className="leftSide"
-        style={{ backgroundImage: `url(${Logo})` }}
-      ></div>
-      <div className="rightSide">
-        <h1> İletişime Geçin</h1>
-
-        <form id="contact-form" method="POST">
-          <label htmlFor="name">Ad- Soyad</label>
-          <input name="name" placeholder="Ad-soyad bilgilerini giriniz..." type="text" />
-          <label htmlFor="email">Email</label>
-          <input name="email" placeholder="Emailinizi giriniz..." type="email" />
-          <label htmlFor="message">Message</label>
-          <textarea
-            rows="6"
-            placeholder="Mesajınızı giriniz..."
-            name="message"
-            required
-          ></textarea>
-          <button type="submit"> Mesajı Gönder</button>
-        </form>
-      </div>
-    </div>
+    <form className="contact-form" onSubmit={sendEmail}>
+      <input type="hidden" name="contact_number" />
+      <label>Kullanıcı Adı</label>
+      <input type="text" name="user_name" />
+      <label>Email</label>
+      <input type="email" name="user_email" />
+      <label>Mesaj</label>
+      <textarea name="message" />
+      <input type="submit" value="Gönder" />
+    </form>
   );
-}
-
-export default Contact;
+  }
