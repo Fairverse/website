@@ -1,14 +1,23 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 import '../styles/Contact.css';
 
 export default function Contact() {
+  const validationSchema = Yup.object({
+    
+    user_name: Yup.string().required("Zorunlu alan"),
+    email: Yup.string().email('Geçersiz e-mail adresi').required('Zorunlu alan'),
+    message: Yup.string().required("Zorunlu alan"),
+    
+  });
 
   function sendEmail(e) {
     e.preventDefault();
 
-    emailjs.sendForm('service_i4yz6tl', 'template_zgofptf', e.target, 's2xENye55tST9E5qD')
+    emailjs.sendForm('service_i4yz6tl', 'template_zgofptf', e.target, 's2xENye55tST9E5qD') //service_id, template_id, user_id
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -16,16 +25,55 @@ export default function Contact() {
       });
   }
 
+
   return (
-    <form className="contact-form" onSubmit={sendEmail}>
-      <input type="hidden" name="contact_number" />
-      <label>Kullanıcı Adı</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Mesaj</label>
-      <textarea name="message" />
-      <input type="submit" value="Gönder" />
-    </form>
+    <Formik 
+			initialValues={{ user_name: '', email: '',message:''}}
+			validationSchema={validationSchema}
+      
+			onSubmit={ values => {
+				console.log(values);
+      
+			}}
+		>
+			{({ handleSubmit, handleChange, values, errors }) => (
+
+    <form className="contact-form" onSubmit={sendEmail} >
+      
+					<input
+						type="text"
+						name="user_name"
+						placeholder="Kullanıcı adı"
+						onChange={handleChange}
+						values={values.user_name}
+            
+					/>
+					{errors.user_name && errors.user_name}
+				
+					<input
+						type="text"
+						name="email"
+						placeholder="E-mail"
+						onChange={handleChange}
+						values={values.email}
+            
+					/>
+					{errors.email && errors.email}
+          <input
+          type="message"
+          name="message"
+          placeholder="Mesaj"
+          onChange={handleChange}
+          values={values.message}
+          
+          />
+          {errors.message && errors.message}
+					<button type="submit" >Gönder</button>
+          
+				</form>
+       
+    )}
+		</Formik>
   );
   }
+
