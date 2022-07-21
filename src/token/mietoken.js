@@ -86,7 +86,7 @@ const abi = [
     stateMutability: "pure",
     payable: false,
     inputs: [],
-    outputs: [{ type: "uint8" }],
+    outputs: [{ internaltype: "uint8", type: "uint8", name: "decimals" }],
   },
   {
     type: "function",

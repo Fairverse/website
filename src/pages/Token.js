@@ -27,15 +27,30 @@ class Token extends Component {
     const accounts = await web3.eth.getAccounts();
     this.setState({ connectWalletText: "Connecting..." });
     this.setState({ address: accounts[0] });
-    const balance = await mietoken.methods.balanceOf(accounts[0]).call();
+    var balance = await mietoken.methods.balanceOf(accounts[0]).call();
     this.setState({ connectWalletText: "Wallet Connected" });
+    const decimals = await mietoken.methods.decimals().call();
+    balance = balance / Math.pow(10, decimals);
     this.setState({ addressBalance: balance });
   };
 
-  transferToken = (value) => {
-    const message = "Value: " + value;
-    this.setState({message});
-  }
+  transferToken = async (value) => {
+    const web3 = new Web3(window.ethereum);
+    const accounts = await web3.eth.getAccounts();
+
+    this.setState({
+      message: "Transfer işleminin başarılı olması bekleniliyor",
+    });
+
+    await mietoken.methods.transfer(this.state.receiverAddress, value).send({
+      from: accounts[0],
+      gasLimit: "3000000",
+    });
+
+    this.setState({
+      message: "MiE Token Transfer İşlemi başarıyla tamamlandı",
+    });
+  };
 
   render() {
     return (
@@ -70,7 +85,12 @@ class Token extends Component {
           <br />
           <div className="btnWrapper">
             <button className="button6" onClick={() => this.transferToken(100)}>
-              100
+              1
+            </button>
+          </div>
+          <div className="btnWrapper">
+            <button className="button6" onClick={() => this.transferToken(500)}>
+              5
             </button>
           </div>
           <hr />
