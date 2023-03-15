@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: center;
 
-  transform: translateX(400px);
+  transform: translateX(300px);
 }
 .kullanılan{
   transform:translateX(450px);
